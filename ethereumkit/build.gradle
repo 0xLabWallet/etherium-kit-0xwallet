@@ -99,7 +99,7 @@ afterEvaluate {
             release(MavenPublication) {
                 groupId = 'com.github.0xLabWallet'
                 artifactId = 'ethereumkit'
-                version = '1.3'
+                version = '1.4'
 
                 from components.release
             }

@@ -4,6 +4,23 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [1.4] - 2025-11-05
+
+### 🎯 **Version Alignment**
+
+- Published as version **1.4** (without "v" prefix) for proper Gradle convention
+- Identical features and improvements as v1.3
+- Same codebase, different tag for JitPack compatibility
+
+**Usage:**
+```gradle
+implementation 'com.github.0xLabWallet.etherium-kit-0xwallet:ethereumkit:1.4'
+```
+
+All features from 1.3 included (see below).
+
+---
+
 ## [1.3] - 2025-11-05
 
 ### 🚀 **Major Improvements**
