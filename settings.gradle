@@ -1,0 +1,3 @@
+// Временно исключен app для тестирования библиотек
+// include ':app', 
+include ':ethereumkit', ':erc20kit', ':uniswapkit', ':oneinchkit', ':nftkit'
