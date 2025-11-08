@@ -1,0 +1,8 @@
+rootProject.name = 'ethereum-kit-android'
+
+include ':ethereumkit'
+include ':erc20kit'
+include ':uniswapkit'
+include ':oneinchkit'
+include ':nftkit'
+

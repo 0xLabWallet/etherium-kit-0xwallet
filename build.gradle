@@ -1,0 +1,103 @@
+// Top-level build file for Ethereum Kit Android Library
+buildscript {
+    ext {
+        kotlin_version = '1.8.0'
+        room_version = '2.5.2'
+        coroutines_version = '1.6.4'
+    }
+    
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+    }
+    
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.1.4'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+    }
+    
+    // Общая версия для всех модулей
+    ext {
+        library_version = '1.5'
+        library_group = 'com.github.0xLabWallet'
+    }
+}
+
+// Настройка для JitPack
+subprojects {
+    apply plugin: 'maven-publish'
+    
+    group = rootProject.ext.library_group
+    version = rootProject.ext.library_version
+    
+    afterEvaluate { project ->
+        if (project.plugins.hasPlugin('com.android.library')) {
+            publishing {
+                publications {
+                    release(MavenPublication) {
+                        from components.release
+                        
+                        groupId = rootProject.ext.library_group
+                        artifactId = project.name
+                        version = rootProject.ext.library_version
+                        
+                        // Добавляем исходники и JavaDoc для JitPack
+                        artifact androidSourcesJar
+                        artifact androidJavadocsJar
+                        
+                        pom {
+                            name = project.name
+                            description = "Ethereum Kit Android - ${project.name} module"
+                            url = 'https://github.com/0xLabWallet/etherium-kit-0xwallet'
+                            
+                            licenses {
+                                license {
+                                    name = 'MIT License'
+                                    url = 'https://opensource.org/licenses/MIT'
+                                }
+                            }
+                            
+                            developers {
+                                developer {
+                                    id = '0xLabWallet'
+                                    name = '0xLab Wallet Team'
+                                }
+                            }
+                            
+                            scm {
+                                connection = 'scm:git:git://github.com/0xLabWallet/etherium-kit-0xwallet.git'
+                                developerConnection = 'scm:git:ssh://github.com/0xLabWallet/etherium-kit-0xwallet.git'
+                                url = 'https://github.com/0xLabWallet/etherium-kit-0xwallet'
+                            }
+                        }
+                    }
+                }
+            }
+            
+            // Задачи для создания source и javadoc JAR
+            task androidSourcesJar(type: Jar) {
+                archiveClassifier.set('sources')
+                from android.sourceSets.main.java.srcDirs
+            }
+            
+            task androidJavadocsJar(type: Jar) {
+                archiveClassifier.set('javadoc')
+                // Пустой javadoc для совместимости с Maven Central
+            }
+        }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
