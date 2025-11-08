@@ -41,7 +41,7 @@ android {
     publishing {
         singleVariant("release") {
             withSourcesJar()
-            withJavadocJar()
+            // JavaDoc отключен из-за несовместимости Dokka с Java 17 sealed classes
         }
     }
 }
