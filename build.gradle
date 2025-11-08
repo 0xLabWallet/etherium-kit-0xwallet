@@ -27,7 +27,7 @@ allprojects {
     
     // Общая версия для всех модулей
     ext {
-        library_version = '1.5.1'
+        library_version = '1.5.2'
         library_group = 'com.github.0xLabWallet'
     }
 }
